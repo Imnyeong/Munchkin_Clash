@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -22,24 +23,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
     // 포톤 서버에 연결
-
-    public override void OnConnectedToMaster()
-    {
-        PhotonNetwork.LocalPlayer.NickName = nickname;
-        PhotonNetwork.JoinLobby();
-    }
-    // 서버에 연결되면 닉네임 동기화 + 로비에 바로 접속
-    public override void OnJoinedLobby()
-    {
-        base.OnJoinedRoom();
-        //for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
-        //{
-        //    Debug.Log(PhotonNetwork.PlayerList[i].NickName + " ");
-        //}
-        SceneManager.LoadScene("Lobby");
-    }
-    // 로비에 들어갔다는 콜백이 오면 로비 씬으로 이동
-
+    public void JoinLobby() => PhotonNetwork.JoinLobby();
+    // 포톤 로비에 접속
     public void DisConnect() => PhotonNetwork.Disconnect();
     // 연결 끊기
 
@@ -50,4 +35,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     //public void LeaveRoom() => PhotonNetwork.LeaveRoom();
     // 방 떠나기
+    #region PunCallbacks
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.LocalPlayer.NickName = nickname;
+        SceneManager.LoadScene("Lobby");
+    }
+    // 서버에 연결되면 닉네임 동기화, Lobby 씬으로 이동
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        Debug.Log($"현재 방 갯수 : {roomList.Count}");
+    }
+    // Lobby에 Join되면 받응 수 있는 Callback 방의 List를 받을 수 있다.
+    #endregion
 }
