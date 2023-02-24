@@ -28,12 +28,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void DisConnect() => PhotonNetwork.Disconnect();
     // 연결 끊기
 
-    //public void CreateRoom() => PhotonNetwork.CreateRoom(inputRoom.text, new RoomOptions { MaxPlayers = 2 });
-    // 방 만들기 inputfield 의 text를 방 이름, 최대 입장 가능 플레이어 수는 2명
-    //public void JoinRoom() => PhotonNetwork.JoinRoom(inputRoom.text);
+    public void CreateRoom(string _roomName) => PhotonNetwork.CreateRoom(_roomName, new RoomOptions { MaxPlayers = 2 });
+    // 이름 입력 받아서 방 생성, 최대 입장 가능 플레이어 수는 2명
+    public void JoinRoom(string _roomName) => PhotonNetwork.JoinRoom(_roomName);
     // 기존에 있는 방에 접속
-
-    //public void LeaveRoom() => PhotonNetwork.LeaveRoom();
+    public void LeaveRoom() => PhotonNetwork.LeaveRoom();
     // 방 떠나기
     #region PunCallbacks
     public override void OnConnectedToMaster()
@@ -42,10 +41,5 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("Lobby");
     }
     // 서버에 연결되면 닉네임 동기화, Lobby 씬으로 이동
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        Debug.Log($"현재 방 갯수 : {roomList.Count}");
-    }
-    // Lobby에 Join되면 받응 수 있는 Callback 방의 List를 받을 수 있다.
     #endregion
 }

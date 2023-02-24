@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 1105700657}
   - component: {fileID: 1105700656}
   m_Layer: 5
-  m_Name: Button - Join
+  m_Name: Button - Connect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532779750}
         m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
-        m_MethodName: OnClickJoin
+        m_MethodName: OnClickConnect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
