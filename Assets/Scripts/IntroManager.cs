@@ -19,31 +19,33 @@ public class IntroManager : MonoBehaviourPunCallbacks
     {
         Disconnect,
         Connect,
-        Lobby,
         Room
     }
     PhotonType photonType = PhotonType.Disconnect;
     public void OnClickConnect()
     {
-        photonType = PhotonType.Connect;
         PhotonManager.Instance.SetNickname(inputName.text);
         PhotonNetwork.ConnectUsingSettings();
     }
     public void OnClickCreateRoom()
     {
-        photonType = PhotonType.Room;
+        PhotonManager.Instance.SetRoomname(inputroomName.text);
         PhotonNetwork.CreateRoom(inputroomName.text, new RoomOptions { MaxPlayers = 2 });
     }
-
     public void OnClickJoinRoom()
     {
-        photonType = PhotonType.Room;
-        PhotonNetwork.JoinRoom(inputName.text);
+        PhotonManager.Instance.SetRoomname(inputroomName.text);
+        PhotonNetwork.JoinRoom(inputroomName.text);
+    }
+    public void OnClickLeaveRoom()
+    {
+        PhotonManager.Instance.SetRoomname(string.Empty);
+        PhotonNetwork.LeaveRoom();
     }
     #region PunCallbacks
     public override void OnConnectedToMaster()
     {
-        photonType = PhotonType.Lobby;
+        photonType = PhotonType.Connect;
         PhotonNetwork.LocalPlayer.NickName = inputName.text;
         PhotonNetwork.JoinLobby();
     }
@@ -55,24 +57,50 @@ public class IntroManager : MonoBehaviourPunCallbacks
             Debug.Log($"{i.ToString()} 번 째 방 이름{roomList[i].Name}");
         }
     }
-    public override void OnJoinedRoom()
+    public override void OnJoinedLobby()
     {
-        base.OnJoinedRoom();
+        base.OnJoinedLobby();
+        LayoutChange(photonType);
+    }
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+        photonType = PhotonType.Room;
         LayoutChange(photonType);
         // Room에 들어오면 레이아웃 교체
     }
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        photonType = PhotonType.Room;
+        LayoutChange(photonType);
+        // Room에 들어오면 레이아웃 교체
+    }
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        photonType = PhotonType.Connect;
+        LayoutChange(photonType);
+    }
     void LayoutChange(PhotonType _type)
     {
-        switch(_type)
+        layoutIntro.SetActive(false);
+        layoutLobby.SetActive(false);
+        layoutRoom.SetActive(false);
+        switch (_type)
         {
             case PhotonType.Disconnect:
                 break;
             case PhotonType.Connect:
-                break;
-            case PhotonType.Lobby:
-                break;
+                {
+                    layoutLobby.SetActive(true);
+                    break;
+                }
             case PhotonType.Room:
-                break;
+                {
+                    layoutRoom.SetActive(true);
+                    break;
+                }
         }
     }
     #endregion
