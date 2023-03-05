@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class IntroManager : MonoBehaviourPunCallbacks
+public class PhotonManager : MonoBehaviourPunCallbacks
 {
     [Header("InputField")]
     [SerializeField] InputField inputName;
@@ -15,25 +15,39 @@ public class IntroManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject layoutIntro;
     [SerializeField] GameObject layoutLobby;
     [SerializeField] GameObject layoutRoom;
+    [SerializeField] GameObject layoutInGame;
+
+    [SerializeField] Transform spawnPosition;
+    string player = "Player";
 
     public enum PhotonType
     {
         Disconnect,
-        Connect,
-        Room
+        Lobby,
+        Room,
+        InGame
     }
     PhotonType photonType = PhotonType.Disconnect;
 
+    #region ButtonClickEvent
     public void OnClickConnect() => PhotonNetwork.ConnectUsingSettings();
     public void OnClickCreateRoom() => PhotonNetwork.CreateRoom(inputroomName.text, new RoomOptions { MaxPlayers = 2 });
     public void OnClickJoinRoom() => PhotonNetwork.JoinRoom(inputroomName.text);
     public void OnClickLeaveRoom() => PhotonNetwork.LeaveRoom();
-    public void OnClickStartGame() => SceneManager.LoadScene("InGame");
-
+    public void OnClickStartGame()
+    {
+        photonType = PhotonType.InGame;
+        LayoutChange(photonType);
+        GameObject go = PhotonNetwork.Instantiate(player, Vector2.zero, Quaternion.identity);
+        go.transform.SetParent(layoutInGame.transform);
+        go.GetComponent<RectTransform>().localScale = Vector3.one;
+        go.GetComponent<RectTransform>().localPosition = spawnPosition.localPosition;
+    }
+    #endregion
     #region PunCallbacks
     public override void OnConnectedToMaster()
     {
-        photonType = PhotonType.Connect;
+        photonType = PhotonType.Lobby;
         PhotonNetwork.LocalPlayer.NickName = inputName.text;
         PhotonNetwork.JoinLobby();
     }
@@ -67,7 +81,7 @@ public class IntroManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
-        photonType = PhotonType.Connect;
+        photonType = PhotonType.Lobby;
         LayoutChange(photonType);
     }
     void LayoutChange(PhotonType _type)
@@ -75,11 +89,12 @@ public class IntroManager : MonoBehaviourPunCallbacks
         layoutIntro.SetActive(false);
         layoutLobby.SetActive(false);
         layoutRoom.SetActive(false);
+        layoutInGame.SetActive(false);
         switch (_type)
         {
             case PhotonType.Disconnect:
                 break;
-            case PhotonType.Connect:
+            case PhotonType.Lobby:
                 {
                     layoutLobby.SetActive(true);
                     break;
@@ -87,6 +102,11 @@ public class IntroManager : MonoBehaviourPunCallbacks
             case PhotonType.Room:
                 {
                     layoutRoom.SetActive(true);
+                    break;
+                }
+            case PhotonType.InGame:
+                {
+                    layoutInGame.SetActive(true);
                     break;
                 }
         }
