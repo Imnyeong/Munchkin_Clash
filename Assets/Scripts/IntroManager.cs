@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviourPunCallbacks
@@ -22,26 +23,13 @@ public class IntroManager : MonoBehaviourPunCallbacks
         Room
     }
     PhotonType photonType = PhotonType.Disconnect;
-    public void OnClickConnect()
-    {
-        PhotonManager.Instance.SetNickname(inputName.text);
-        PhotonNetwork.ConnectUsingSettings();
-    }
-    public void OnClickCreateRoom()
-    {
-        PhotonManager.Instance.SetRoomname(inputroomName.text);
-        PhotonNetwork.CreateRoom(inputroomName.text, new RoomOptions { MaxPlayers = 2 });
-    }
-    public void OnClickJoinRoom()
-    {
-        PhotonManager.Instance.SetRoomname(inputroomName.text);
-        PhotonNetwork.JoinRoom(inputroomName.text);
-    }
-    public void OnClickLeaveRoom()
-    {
-        PhotonManager.Instance.SetRoomname(string.Empty);
-        PhotonNetwork.LeaveRoom();
-    }
+
+    public void OnClickConnect() => PhotonNetwork.ConnectUsingSettings();
+    public void OnClickCreateRoom() => PhotonNetwork.CreateRoom(inputroomName.text, new RoomOptions { MaxPlayers = 2 });
+    public void OnClickJoinRoom() => PhotonNetwork.JoinRoom(inputroomName.text);
+    public void OnClickLeaveRoom() => PhotonNetwork.LeaveRoom();
+    public void OnClickStartGame() => SceneManager.LoadScene("InGame");
+
     #region PunCallbacks
     public override void OnConnectedToMaster()
     {
