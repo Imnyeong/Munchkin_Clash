@@ -52,6 +52,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     }
     // 서버에 연결되면 닉네임 동기화, Lobby 레이아웃으로 변경
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (cause == DisconnectCause.MaxCcuReached) Debug.Log("Server is full, please try again...");
+    }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         for (int i = 0; i < roomList.Count; ++i)

@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff58cff0b8ec9014688c9d4e6accf5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputName: {fileID: 0}
-  inputroomName: {fileID: 0}
-  layoutIntro: {fileID: 0}
-  layoutLobby: {fileID: 0}
-  layoutRoom: {fileID: 0}
+  layoutIntro: {fileID: 8579475369183798511, guid: a3e4b9bc6ab75724fb842b15ea59182d, type: 3}
+  layoutLobby: {fileID: 7120002041098600229, guid: 4da705a2472f38b4c955d51f5239929a, type: 3}
+  layoutRoom: {fileID: 1337308759700005730, guid: fb781dbeeca806a448462d1643e47f7b, type: 3}
+  layoutInGame: {fileID: 1643901611616758577, guid: 4bfc85d4bf411984cbd5dffee506c2ee, type: 3}
+  spawnPosition: {fileID: 0}
+  nickname: 
+  photonType: 0
