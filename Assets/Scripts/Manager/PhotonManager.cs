@@ -40,6 +40,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Login,
         InGame
     }
+
     [HideInInspector] public PhotonType photonType = PhotonType.Disconnect;
     [HideInInspector] public SceneType sceneType = SceneType.Loading;
 
@@ -84,6 +85,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     break;
                 }
         }
+        ChangLayout(photonType);
     }
     #endregion
     #region PhotonNetwork
@@ -110,7 +112,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LocalPlayer.NickName = nickname;
         SetPhotonType(PhotonType.Lobby);
-        ChangeLayout(GetPhotonType());
+        ChangLayout(GetPhotonType());
         PhotonNetwork.JoinLobby();
     }
     // 서버에 연결되면 닉네임 동기화, Lobby 레이아웃으로 변경
@@ -205,20 +207,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 }
         }
     }
-    public void ChangeLayout(PhotonType _photonType)
+    public void ChangLayout(PhotonType _photonType)
     {
         for(int i = 0 ; i < currentLayouts.Count ; ++i)
             currentLayouts[i].SetActive(false);
 
-
-        switch (_photonType)
-        {
-            case PhotonType.Disconnect:
-                {
-
-                    break;
-                }
-        }
+        currentLayouts.Find(x => x.GetComponent<BaseLayout>().PhotonType == _photonType).SetActive(true);
     }
     #endregion
 }

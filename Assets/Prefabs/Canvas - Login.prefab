@@ -719,6 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab36a5074ebb82498312b9f2762a7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputNickname: {fileID: 8579475368090470772}
+  loginButton: {fileID: 8579475368860728575}
 --- !u!1 &8579475369451139073
 GameObject:
   m_ObjectHideFlags: 0
