@@ -1,19 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyLayout : BaseLayout
 {
+    [SerializeField] InputField inputRoomName;
+    [SerializeField] Button createButton;
+    [SerializeField] Button joinButton;
     public override PhotonManager.PhotonType PhotonType => PhotonManager.PhotonType.Lobby;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        createButton.onClick.RemoveAllListeners();
+        joinButton.onClick.RemoveAllListeners();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        createButton.onClick.AddListener(delegate
+        {
+            PhotonManager.Instance.CreateRoom(inputRoomName.text);
+        });
+        joinButton.onClick.AddListener(delegate
+        {
+            PhotonManager.Instance.JoinRoom(inputRoomName.text);
+        });
     }
 }

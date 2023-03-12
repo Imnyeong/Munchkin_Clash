@@ -3,7 +3,6 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -97,15 +96,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void CreateRoom(string _roomName) => PhotonNetwork.CreateRoom(_roomName, new RoomOptions { MaxPlayers = 2 });
     public void JoinRoom(string _roomName) => PhotonNetwork.JoinRoom(_roomName);
     public void LeaveRoom() => PhotonNetwork.LeaveRoom();
-    //public void StartGame()
-    //{
-    //    SetPhotonType(PhotonType.InGame);
-    //    LayoutChange(photonType);
-    //    GameObject go = PhotonNetwork.Instantiate(player, Vector2.zero, Quaternion.identity);
-    //    go.transform.SetParent(layoutInGame.transform);
-    //    go.GetComponent<RectTransform>().localScale = Vector3.one;
-    //    go.GetComponent<RectTransform>().localPosition = spawnPosition.localPosition;
-    //}
+    public void StartGame()
+    {
+        Debug.Log("게임 시작");
+        //SetPhotonType(PhotonType.InGame);
+        //LayoutChange(photonType);
+        //GameObject go = PhotonNetwork.Instantiate(player, Vector2.zero, Quaternion.identity);
+        //go.transform.SetParent(layoutInGame.transform);
+        //go.GetComponent<RectTransform>().localScale = Vector3.one;
+        //go.GetComponent<RectTransform>().localPosition = spawnPosition.localPosition;
+    }
     #endregion
     #region PunCallbacks
     public override void OnConnectedToMaster()
@@ -136,6 +136,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         base.OnCreatedRoom();
         SetPhotonType(PhotonType.Room);
+        ChangLayout(GetPhotonType());
         // Room에 들어오면 레이아웃 교체
     }
     public override void OnJoinedRoom()
