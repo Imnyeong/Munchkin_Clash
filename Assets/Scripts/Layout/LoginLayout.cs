@@ -12,12 +12,28 @@ public class LoginLayout : BaseLayout
     void Start()
     {
         loginButton.onClick.RemoveAllListeners();
-        loginButton.onClick.AddListener(delegate { PhotonNetwork.ConnectUsingSettings(); });
+        loginButton.onClick.AddListener(delegate
+        { 
+            // 로딩 추가
+            PhotonNetwork.ConnectUsingSettings();
+        });
     }
-
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
+        PhotonNetwork.LocalPlayer.NickName = inputNickname.text;
         DataManager.Instance.nickname = inputNickname.text;
+        PhotonNetwork.JoinLobby();
+    }
+    // 서버에 연결되면 닉네임 동기화, Lobby 레이아웃으로 변경
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (cause == DisconnectCause.MaxCcuReached)
+            Debug.Log("Server is full, please try again...");
+    }
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Lobby);
     }
 }

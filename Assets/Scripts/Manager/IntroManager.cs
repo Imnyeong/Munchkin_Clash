@@ -8,6 +8,11 @@ public class IntroManager : MonoBehaviour
     [SerializeField]
     List<GameObject> layoutList;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     private void Start() => ChangeLayout(DataManager.LayoutType.Login);
     public void ChangeLayout(DataManager.LayoutType _type)
     {
