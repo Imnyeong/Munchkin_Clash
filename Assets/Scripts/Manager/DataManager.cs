@@ -10,7 +10,24 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public string LoadingScene = "Loading";
     [HideInInspector]
-    public string LoginScene = "Login";
+    public string IntroScene = "Intro";
     [HideInInspector]
     public string InGameScene = "InGame";
+
+    public enum LayoutType
+    {
+        Login,
+        Lobby,
+        Room,
+        InGame
+    }
+    #region UnityLifeCycle
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        if (Instance == null)
+            Instance = this;
+    }
+    #endregion
 }

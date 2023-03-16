@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class BaseLayout : MonoBehaviour
 {
-    public virtual PhotonManager.PhotonType PhotonType { get; }
+    public virtual DataManager.LayoutType LayoutType { get; }
 }

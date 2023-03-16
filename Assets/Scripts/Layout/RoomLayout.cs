@@ -5,7 +5,7 @@ public class RoomLayout : BaseLayout
 {
     [SerializeField] Button startButton;
     [SerializeField] Button exitButton;
-    public override PhotonManager.PhotonType PhotonType => PhotonManager.PhotonType.Room;
+    public override DataManager.LayoutType LayoutType => DataManager.LayoutType.Room;
     void Start()
     {
         startButton.onClick.RemoveAllListeners();

@@ -6,7 +6,7 @@ public class LobbyLayout : BaseLayout
     [SerializeField] InputField inputRoomName;
     [SerializeField] Button createButton;
     [SerializeField] Button joinButton;
-    public override PhotonManager.PhotonType PhotonType => PhotonManager.PhotonType.Lobby;
+    public override DataManager.LayoutType LayoutType => DataManager.LayoutType.Lobby;
     // Start is called before the first frame update
     void Start()
     {

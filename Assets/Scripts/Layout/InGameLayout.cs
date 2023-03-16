@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InGameLayout : BaseLayout
 {
-    public override PhotonManager.PhotonType PhotonType => PhotonManager.PhotonType.InGame;
+    public override DataManager.LayoutType LayoutType => DataManager.LayoutType.InGame;
 
     void Start()
     {
