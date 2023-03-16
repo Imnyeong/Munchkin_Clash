@@ -286,13 +286,14 @@ GameObject:
   - component: {fileID: 2374177728291591238}
   - component: {fileID: 2374177728291591236}
   - component: {fileID: 2374177728291591239}
+  - component: {fileID: 5468464399483001643}
   m_Layer: 5
   m_Name: Layout - Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2374177728291591238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -354,6 +355,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5468464399483001643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374177728291591241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab36a5074ebb82498312b9f2762a7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputNickname: {fileID: 8059871179850884562}
+  loginButton: {fileID: 6048148225248245365}
 --- !u!1 &5320807612074227328
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +405,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 655, y: 134}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7254172330734862767
 CanvasRenderer:

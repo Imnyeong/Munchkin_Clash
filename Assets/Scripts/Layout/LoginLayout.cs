@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +12,12 @@ public class LoginLayout : BaseLayout
     void Start()
     {
         loginButton.onClick.RemoveAllListeners();
-        loginButton.onClick.AddListener(delegate 
-        {
-            //PhotonManager.Instance.Connect(inputNickname.text);
-        });
+        loginButton.onClick.AddListener(delegate { PhotonNetwork.ConnectUsingSettings(); });
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        base.OnConnectedToMaster();
+        DataManager.Instance.nickname = inputNickname.text;
     }
 }

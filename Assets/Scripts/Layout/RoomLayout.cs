@@ -13,11 +13,11 @@ public class RoomLayout : BaseLayout
 
         startButton.onClick.AddListener(delegate
         {
-            PhotonManager.Instance.StartGame();
+            //PhotonManager.Instance.StartGame();
         });
         exitButton.onClick.AddListener(delegate
         {
-            PhotonManager.Instance.LeaveRoom();
+            //PhotonManager.Instance.LeaveRoom();
         });
     }
 }

@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 7831333673262546495}
   - component: {fileID: 7831333673262546493}
   - component: {fileID: 7831333673262546492}
+  - component: {fileID: 381072834352186163}
   m_Layer: 5
   m_Name: Layout - Lobby
   m_TagString: Untagged
@@ -526,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  m_Color: {r: 0.87058824, g: 0.87058824, b: 0.87058824, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -543,6 +544,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &381072834352186163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831333673262546494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4fa9cf2f20a844995da2efbd5a64d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputRoomName: {fileID: 0}
+  createButton: {fileID: 0}
+  joinButton: {fileID: 0}
 --- !u!1 &7831333673800035078
 GameObject:
   m_ObjectHideFlags: 0

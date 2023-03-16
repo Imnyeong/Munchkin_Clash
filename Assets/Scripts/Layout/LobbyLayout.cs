@@ -15,11 +15,11 @@ public class LobbyLayout : BaseLayout
 
         createButton.onClick.AddListener(delegate
         {
-            PhotonManager.Instance.CreateRoom(inputRoomName.text);
+            //PhotonManager.Instance.CreateRoom(inputRoomName.text);
         });
         joinButton.onClick.AddListener(delegate
         {
-            PhotonManager.Instance.JoinRoom(inputRoomName.text);
+            //PhotonManager.Instance.JoinRoom(inputRoomName.text);
         });
     }
 }
