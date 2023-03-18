@@ -13,7 +13,7 @@ public class IntroManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
-    public void OnClickLogin(DataManager.LayoutType _type)
+    public void ChangeLayout(DataManager.LayoutType _type)
     {
         for(int i = 0 ; i < layoutList.Count ; ++i)
             layoutList[i].SetActive(false);
