@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +17,23 @@ public class LobbyLayout : BaseLayout
 
         createButton.onClick.AddListener(delegate
         {
-            //PhotonManager.Instance.CreateRoom(inputRoomName.text);
+            PhotonNetwork.CreateRoom(inputRoomName.text);
         });
         joinButton.onClick.AddListener(delegate
         {
-            //PhotonManager.Instance.JoinRoom(inputRoomName.text);
+            PhotonNetwork.JoinRoom(inputRoomName.text);
         });
+    }
+
+    public override void OnCreatedRoom()
+    {
+        //base.OnCreatedRoom();
+        //DataManager.Instance.roomName = inputRoomName.text;
+    }
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        DataManager.Instance.roomName = inputRoomName.text;
+        IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
     }
 }

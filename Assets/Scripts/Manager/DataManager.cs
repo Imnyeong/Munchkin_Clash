@@ -6,6 +6,8 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public string nickname = string.Empty;
     [HideInInspector]
+    public string roomName = string.Empty;
+    [HideInInspector]
     public string LoadingScene = "Loading";
     [HideInInspector]
     public string IntroScene = "Intro";
