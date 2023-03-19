@@ -556,9 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4fa9cf2f20a844995da2efbd5a64d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputRoomName: {fileID: 0}
-  createButton: {fileID: 0}
-  joinButton: {fileID: 0}
+  inputRoomName: {fileID: 7831333673800035079}
+  createButton: {fileID: 7831333672976201803}
+  joinButton: {fileID: 7831333673877962904}
 --- !u!1 &7831333673800035078
 GameObject:
   m_ObjectHideFlags: 0
