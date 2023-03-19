@@ -35,5 +35,6 @@ public class LobbyLayout : BaseLayout
         base.OnJoinedRoom();
         DataManager.Instance.roomName = inputRoomName.text;
         IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
+        Debug.Log("OnJoinedRoom");
     }
 }
