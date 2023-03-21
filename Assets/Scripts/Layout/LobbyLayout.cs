@@ -17,18 +17,16 @@ public class LobbyLayout : BaseLayout
 
         createButton.onClick.AddListener(delegate
         {
+            if (inputRoomName.text.Equals(string.Empty))
+                return;
             PhotonNetwork.CreateRoom(inputRoomName.text);
         });
         joinButton.onClick.AddListener(delegate
         {
+            if (inputRoomName.text.Equals(string.Empty))
+                return;
             PhotonNetwork.JoinRoom(inputRoomName.text);
         });
-    }
-
-    public override void OnCreatedRoom()
-    {
-        //base.OnCreatedRoom();
-        //DataManager.Instance.roomName = inputRoomName.text;
     }
     public override void OnJoinedRoom()
     {

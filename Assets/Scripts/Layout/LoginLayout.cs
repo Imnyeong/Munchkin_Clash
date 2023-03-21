@@ -13,7 +13,9 @@ public class LoginLayout : BaseLayout
     {
         loginButton.onClick.RemoveAllListeners();
         loginButton.onClick.AddListener(delegate
-        { 
+        {
+            if (inputNickname.text.Equals(string.Empty))
+                return;
             // 로딩 추가
             PhotonNetwork.ConnectUsingSettings();
         });
