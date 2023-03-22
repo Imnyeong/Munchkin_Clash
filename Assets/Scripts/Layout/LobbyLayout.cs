@@ -1,5 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,5 +35,14 @@ public class LobbyLayout : BaseLayout
         DataManager.Instance.roomName = inputRoomName.text;
         IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
         Debug.Log("OnJoinedRoom");
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        for (int i = 0; i < roomList.Count; ++i)
+        {
+            Debug.Log($"{i.ToString()} 번째 방 이름 : {roomList[i].Name}");
+        }
     }
 }
