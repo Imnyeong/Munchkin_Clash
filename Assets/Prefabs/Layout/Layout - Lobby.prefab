@@ -700,7 +700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputRoomName: {fileID: 7831333673800035079}
   createButton: {fileID: 7831333672976201803}
-  joinButton: {fileID: 0}
+  scrollRect: {fileID: 2556736288219425601}
+  roomUnit: {fileID: 3398467736109708058, guid: 91fa90bfb5e25e745be71141ff02f84b, type: 3}
 --- !u!1 &7831333673800035078
 GameObject:
   m_ObjectHideFlags: 0
