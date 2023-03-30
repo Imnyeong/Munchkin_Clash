@@ -40,10 +40,6 @@ public class LobbyLayout : BaseLayout
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
-        for (int i = 0; i < roomList.Count; ++i)
-        {
-            Debug.Log($"{i.ToString()} 번째 방 이름 : {roomList[i].Name}");
-        }
         for (int i = scrollRect.content.childCount - 1; i >= 0; i--)
         {
             GameObject.Destroy(scrollRect.content.GetChild(i).gameObject);
@@ -51,7 +47,7 @@ public class LobbyLayout : BaseLayout
         for (int i = 0; i < roomList.Count; ++i)
         {
             GameObject roomObject = Instantiate(roomUnit.gameObject, scrollRect.content);
-            roomObject.name = roomList[i].Name;
+            roomObject.GetComponent<RoomUnit>().Init(roomList[i].Name, roomList[i].PlayerCount);
         }
     }
 }
