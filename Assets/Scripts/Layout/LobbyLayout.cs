@@ -46,7 +46,7 @@ public class LobbyLayout : BaseLayout
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        DataManager.Instance.roomName = roomName;
+        DataManager.Instance.roomName = inputRoomName.text;
         IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
         Debug.Log("OnJoinedRoom");
     }

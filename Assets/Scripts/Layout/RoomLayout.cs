@@ -20,8 +20,15 @@ public class RoomLayout : BaseLayout
             Debug.Log($"PhotonNetwork.CurrentLobby.Name = {PhotonNetwork.CurrentLobby.Name}, PhotonNetwork.CurrentRoom.Name = {PhotonNetwork.CurrentRoom.Name}, PhotonNetwork.LocalPlayer.NickName = {PhotonNetwork.LocalPlayer.NickName}");
         });
         exitButton.onClick.AddListener(delegate
-        {
+        { 
             PhotonNetwork.LeaveRoom();
         });
+    }
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        DataManager.Instance.roomName = string.Empty;
+        IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Lobby);
+        Debug.Log("OnLeftRoom");
     }
 }
