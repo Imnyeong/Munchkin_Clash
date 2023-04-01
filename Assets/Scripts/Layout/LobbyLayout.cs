@@ -43,4 +43,11 @@ public class LobbyLayout : BaseLayout
             roomObject.GetComponent<RoomUnit>().Init(roomList[i]);
         }
     }
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        DataManager.Instance.roomName = roomName;
+        IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
+        Debug.Log("OnJoinedRoom");
+    }
 }
