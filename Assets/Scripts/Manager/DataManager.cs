@@ -1,3 +1,5 @@
+using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -13,7 +15,8 @@ public class DataManager : MonoBehaviour
     public string IntroScene = "Intro";
     [HideInInspector]
     public string InGameScene = "InGame";
-
+    [HideInInspector]
+    public List<RoomInfo> currentRoomList;
     public enum LayoutType
     {
         Login,
