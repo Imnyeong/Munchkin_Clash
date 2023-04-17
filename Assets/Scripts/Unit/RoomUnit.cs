@@ -1,9 +1,8 @@
-using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomUnit : MonoBehaviourPunCallbacks
+public class RoomUnit : MonoBehaviour
 {
     [SerializeField]
     Text roomNameText;
@@ -12,7 +11,7 @@ public class RoomUnit : MonoBehaviourPunCallbacks
     [SerializeField] 
     Button joinButton;
 
-    private string roomName;
+    private string roomName = string.Empty;
     public void Init(RoomInfo _room)
     {
         roomName = _room.Name;
@@ -20,14 +19,8 @@ public class RoomUnit : MonoBehaviourPunCallbacks
         playerCount.text = _room.PlayerCount.ToString() + " / " + _room.MaxPlayers.ToString();
         joinButton.onClick.AddListener(delegate
         {
-            PhotonNetwork.JoinRoom(_room.Name);
+            PhotonManager.Instance.JoinRoom(_room.Name);
         });
     }
-    public override void OnJoinedRoom()
-    {
-        base.OnJoinedRoom();
-        DataManager.Instance.roomName = roomName;
-        IntroManager.Instance.ChangeLayout(DataManager.LayoutType.Room);
-        Debug.Log("OnJoinedRoom");
-    }
+
 }

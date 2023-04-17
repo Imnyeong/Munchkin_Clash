@@ -1,7 +1,7 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class BaseLayout : MonoBehaviourPunCallbacks
+public class BaseLayout : MonoBehaviour
 {
     public virtual DataManager.LayoutType LayoutType { get; }
 }
