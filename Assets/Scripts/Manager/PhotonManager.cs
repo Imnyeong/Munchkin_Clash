@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -12,6 +13,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private string nickname = string.Empty;
     [HideInInspector]
     private string roomName = string.Empty;
+
+    public PhotonView pv;
+
     #region UnityLifeCycle
     private void Awake()
     {
@@ -42,7 +46,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
-
+    public void GameStart()
+    {
+        pv.RPC("GameStartRPC", RpcTarget.AllBuffered);
+    }
     #endregion
     #region PhotonCallback
     public override void OnConnectedToMaster()
@@ -68,9 +75,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
+        Debug.Log("룸리스트 업데이트 콜백");
         DataManager.Instance.currentRoomList = new List<RoomInfo>(roomList.Count);
         for (int i = 0; i < roomList.Count; ++i)
             DataManager.Instance.currentRoomList.Add(roomList[i]);
+        IntroManager.Instance.RoomListUpdate();
+        for (int i = 0; i < roomList.Count; ++i)
+            Debug.Log(roomName);
+        //pv.RPC("RoomListUpdateRPC", RpcTarget.AllBuffered);
     }
     public override void OnJoinedRoom()
     {
@@ -87,5 +99,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("OnLeftRoom");
     }
     #endregion
-
+    #region PUNRPC
+    [PunRPC]
+    void GameStartRPC()
+    {
+        SceneManager.LoadScene(DataManager.Instance.InGameScene);
+    }
+    [PunRPC]
+    void RoomListUpdateRPC(List<RoomInfo> roomList)
+    {
+        //DataManager.Instance.currentRoomList = new List<RoomInfo>(roomList.Count);
+        //for (int i = 0; i < roomList.Count; ++i)
+        //    DataManager.Instance.currentRoomList.Add(roomList[i]);
+        //IntroManager.Instance.RoomListUpdate();
+    }
+    #endregion
 }

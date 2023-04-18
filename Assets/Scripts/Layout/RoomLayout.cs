@@ -1,4 +1,3 @@
-using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,7 @@ public class RoomLayout : BaseLayout
 
         startButton.onClick.AddListener(delegate
         {
-            Debug.Log($"PhotonNetwork.CurrentLobby.Name = {PhotonNetwork.CurrentLobby.Name}, PhotonNetwork.CurrentRoom.Name = {PhotonNetwork.CurrentRoom.Name}, PhotonNetwork.LocalPlayer.NickName = {PhotonNetwork.LocalPlayer.NickName}");
+            PhotonManager.Instance.GameStart();
         });
         exitButton.onClick.AddListener(delegate
         {

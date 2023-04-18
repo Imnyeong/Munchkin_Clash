@@ -20,4 +20,9 @@ public class IntroManager : MonoBehaviour
 
         layoutList.Find(x => x.GetComponent<BaseLayout>().LayoutType.Equals(_type)).SetActive(true);
     }
+
+    public void RoomListUpdate()
+    {
+        layoutList.Find(x => x.GetComponent<BaseLayout>().LayoutType.Equals(DataManager.LayoutType.Lobby)).GetComponent<LobbyLayout>().RoomListUpdate();
+    }
 }
